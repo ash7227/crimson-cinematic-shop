@@ -18,11 +18,11 @@ const Navigation = ({ onSearch }: NavigationProps) => {
   };
 
   const menuItems = [
-    { name: "Home", href: "#" },
-    { name: "Accessories", href: "#accessories" },
-    { name: "All Characters", href: "#characters" },
-    { name: "Request a Character", href: "#request" },
-    { name: "Promo Codes", href: "#promo" },
+    { name: "Home", href: "/" },
+    { name: "Accessories", href: "/#accessories" },
+    { name: "All Characters", href: "/characters" },
+    { name: "Request a Character", href: "/#request" },
+    { name: "Promo Codes", href: "/#promo" },
   ];
 
   return (

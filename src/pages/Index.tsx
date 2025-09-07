@@ -29,7 +29,7 @@ const featuredBundles = [
   },
   {
     id: "2",
-    title: "Chemistry Teacher",
+    title: "Chemistry Teacher (Alter Ego)",
     description: "Transform into everyone's favorite science educator",
     price: 79.99,
     originalPrice: 109.99,
