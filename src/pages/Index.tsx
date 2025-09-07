@@ -7,8 +7,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import bloodSpatterBundle from "@/assets/blood-spatter-bundle.jpg";
-import chemistryTeacherBundle from "@/assets/chemistry-teacher-bundle.jpg";
+import ReviewsSection from "@/components/ReviewsSection";
+import bloodSpatterOutfit from "@/assets/blood-spatter-outfit.png";
+import chemistryTeacherOutfit from "@/assets/chemistry-teacher-outfit.png";
 
 // Mock data
 const featuredBundles = [
@@ -18,7 +19,7 @@ const featuredBundles = [
     description: "Complete forensic investigator costume with authentic details",
     price: 89.99,
     originalPrice: 129.99,
-    heroImage: bloodSpatterBundle,
+    heroImage: bloodSpatterOutfit,
     items: [
       { name: "Lab Coat", type: "Clothing", image: "/api/placeholder/100/100", price: 24.99 },
       { name: "Safety Glasses", type: "Accessory", image: "/api/placeholder/100/100", price: 12.99 },
@@ -33,7 +34,7 @@ const featuredBundles = [
     description: "Transform into everyone's favorite science educator",
     price: 79.99,
     originalPrice: 109.99,
-    heroImage: chemistryTeacherBundle,
+    heroImage: chemistryTeacherOutfit,
     items: [
       { name: "Yellow Shirt", type: "Clothing", image: "/api/placeholder/100/100", price: 19.99 },
       { name: "Khaki Pants", type: "Clothing", image: "/api/placeholder/100/100", price: 29.99 },
@@ -88,8 +89,7 @@ const Index = () => {
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="text-cinematic">Character</span>
-            <span className="text-foreground"> Inspired</span>
+            <span className="text-cinematic">Character Closet</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto">
             Premium costume bundles and accessories inspired by your favorite characters. 
@@ -141,6 +141,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Reviews Section */}
+      <ReviewsSection />
 
       {/* Request Character Section */}
       <section id="request" className="py-16 px-4 sm:px-6 lg:px-8">

@@ -31,7 +31,7 @@ const Navigation = ({ onSearch }: NavigationProps) => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold text-cinematic">CharacterCo</h1>
+            <h1 className="text-xl font-bold text-cinematic">Character Closet</h1>
           </div>
 
           {/* Desktop Menu */}
