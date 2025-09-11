@@ -19,7 +19,7 @@ const featuredBundles = [
     description: "Complete forensic investigator costume with authentic details",
     price: 89.99,
     originalPrice: 129.99,
-    heroImage: bloodSpatterOutfit,
+    heroImage: "/lovable-uploads/9eaaec0a-5064-4b7c-bc64-3fe29451fb28.png",
     items: [
       { name: "Tactical Shirt", type: "Clothing", image: "/lovable-uploads/9b8e43b8-57fc-447b-90e3-b5a8ed1daa07.png", price: 24.99 },
       { name: "Tactical Pants", type: "Clothing", image: "/lovable-uploads/5b5fb3a5-6240-46e8-8fe0-fddcb67acbc0.png", price: 32.99 },
