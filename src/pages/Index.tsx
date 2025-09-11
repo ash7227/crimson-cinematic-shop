@@ -21,11 +21,11 @@ const featuredBundles = [
     originalPrice: 129.99,
     heroImage: bloodSpatterOutfit,
     items: [
-      { name: "Lab Coat", type: "Clothing", image: "/api/placeholder/100/100", price: 24.99 },
-      { name: "Safety Glasses", type: "Accessory", image: "/api/placeholder/100/100", price: 12.99 },
-      { name: "Latex Gloves", type: "Accessory", image: "/api/placeholder/100/100", price: 8.99 },
-      { name: "Evidence Bags", type: "Props", image: "/api/placeholder/100/100", price: 15.99 },
-      { name: "Blood Sample Kit", type: "Props", image: "/api/placeholder/100/100", price: 19.99 },
+      { name: "Tactical Shirt", type: "Clothing", image: "/lovable-uploads/9b8e43b8-57fc-447b-90e3-b5a8ed1daa07.png", price: 24.99 },
+      { name: "Tactical Pants", type: "Clothing", image: "/lovable-uploads/5b5fb3a5-6240-46e8-8fe0-fddcb67acbc0.png", price: 32.99 },
+      { name: "Tactical Gloves", type: "Accessory", image: "/lovable-uploads/287b2ba9-c5ca-4c3a-8fbc-cf320ffb72a7.png", price: 18.99 },
+      { name: "Protection Apron", type: "Accessory", image: "/lovable-uploads/ca63757e-86f6-47dc-bb66-42c07ca78691.png", price: 15.99 },
+      { name: "Full Outfit", type: "Complete Set", image: "/lovable-uploads/9eaaec0a-5064-4b7c-bc64-3fe29451fb28.png", price: 19.99 },
     ]
   },
   {
