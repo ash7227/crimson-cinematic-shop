@@ -4,38 +4,45 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const reviews = [
   {
-    name: "Mike R.",
+    name: "CosplayPro23",
     rating: 5,
-    comment: "The Blood Spatter Analyst costume is incredibly detailed! Every piece feels authentic and high quality. Perfect for conventions.",
+    comment: "Ordered the tactical set for Comic-Con. The fabric quality is legit - not that cheap costume stuff. The pants actually fit like real tactical gear.",
     character: "Blood Spatter Analyst",
     verified: true
   },
   {
-    name: "Sarah L.",
-    rating: 5,
-    comment: "Amazing attention to detail on the Chemistry Teacher set. The suit fits perfectly and the accessories are spot on!",
+    name: "Jennifer M.",
+    rating: 4,
+    comment: "Love the attention to detail but sizing runs a bit large. The shirt material feels premium though. Definitely recommend sizing down.",
     character: "Chemistry Teacher",
     verified: true
   },
   {
-    name: "James K.",
+    name: "TheatreKid2020",
     rating: 5,
-    comment: "Character Closet doesn't mess around - these costumes are movie quality. Worth every penny for the authenticity.",
+    comment: "Used this for our school production. Director was impressed with how authentic it looked on stage. Worth the investment!",
     character: "Blood Spatter Analyst",
     verified: true
   },
   {
-    name: "Emma D.",
-    rating: 5,
-    comment: "Fast shipping, perfect packaging, and the costume exceeded my expectations. The fedora and glasses are perfect!",
+    name: "Mark T.",
+    rating: 4,
+    comment: "Good quality overall. The gloves are surprisingly well-made. Only complaint is shipping took a bit longer than expected but customer service was helpful.",
     character: "Chemistry Teacher",
     verified: true
   },
   {
-    name: "Alex M.",
+    name: "Halloween_Queen",
     rating: 5,
-    comment: "Finally found costumes that actually look like the real thing. Character Closet is now my go-to for all costume needs.",
-    character: "All Characters",
+    comment: "This was perfect for my Halloween costume! Got so many compliments. The apron is actually functional too lol.",
+    character: "Blood Spatter Analyst",
+    verified: true
+  },
+  {
+    name: "David L.",
+    rating: 3,
+    comment: "Decent costume but the price is a bit steep. Quality is there but expected more accessories for the cost. Still happy with purchase.",
+    character: "Chemistry Teacher",
     verified: true
   }
 ];
@@ -50,8 +57,8 @@ const ReviewsSection = () => {
             {[1, 2, 3, 4, 5].map((star) => (
               <Star key={star} className="w-6 h-6 fill-crimson text-crimson" />
             ))}
-            <span className="text-xl font-semibold ml-2">5.0</span>
-            <span className="text-muted-foreground">• 127 reviews</span>
+            <span className="text-xl font-semibold ml-2">4.3</span>
+            <span className="text-muted-foreground">• 89 reviews</span>
           </div>
           <p className="text-muted-foreground">
             Trusted by collectors and enthusiasts worldwide
