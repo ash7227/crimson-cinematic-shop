@@ -66,7 +66,7 @@ const BundleCard = ({ bundle, onViewDetails }: BundleCardProps) => {
         <img
           src={allImages[currentImageIndex]}
           alt={bundle.title}
-          className="w-full h-64 object-cover transition-all duration-500 group-hover:scale-105"
+          className="w-full h-64 object-contain transition-all duration-500 group-hover:scale-105 bg-secondary/10"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
         <div className="absolute top-4 right-4">
