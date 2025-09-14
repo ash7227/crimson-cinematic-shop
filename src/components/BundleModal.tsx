@@ -4,6 +4,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface BundleItem {
   name: string;
@@ -31,6 +33,8 @@ interface BundleModalProps {
 const BundleModal = ({ bundle, isOpen, onClose }: BundleModalProps) => {
   const [selectedItems, setSelectedItems] = useState<Set<number>>(new Set());
   const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
+  const { addToCart } = useCart();
+  const { toast } = useToast();
 
   if (!bundle) return null;
 
@@ -62,6 +66,44 @@ const BundleModal = ({ bundle, isOpen, onClose }: BundleModalProps) => {
       const quantity = quantities[index] || 1;
       return total + (item.price * quantity);
     }, 0);
+  };
+
+  const handleBuyBundle = () => {
+    addToCart({
+      id: `bundle-${bundle.id}`,
+      name: bundle.title,
+      price: bundle.price,
+      image: bundle.heroImage,
+      type: 'bundle'
+    });
+    toast({
+      title: "Added to cart!",
+      description: `${bundle.title} bundle has been added to your cart.`,
+    });
+    onClose();
+  };
+
+  const handleAddSelectedToCart = () => {
+    Array.from(selectedItems).forEach((index) => {
+      const item = bundle.items[index];
+      const quantity = quantities[index] || 1;
+      for (let i = 0; i < quantity; i++) {
+        addToCart({
+          id: `${bundle.id}-item-${index}-${Date.now()}-${i}`,
+          name: item.name,
+          price: item.price,
+          image: item.image,
+          type: 'individual'
+        });
+      }
+    });
+    toast({
+      title: "Added to cart!",
+      description: `${selectedItems.size} item(s) added to your cart.`,
+    });
+    setSelectedItems(new Set());
+    setQuantities({});
+    onClose();
   };
 
   return (
@@ -96,9 +138,9 @@ const BundleModal = ({ bundle, isOpen, onClose }: BundleModalProps) => {
               <span className="text-3xl font-bold text-crimson">${bundle.price}</span>
               <span className="text-xl text-muted-foreground line-through">${bundle.originalPrice}</span>
             </div>
-            <Button className="btn-crimson">
+            <Button className="btn-crimson" onClick={handleBuyBundle}>
               <ShoppingCart className="w-4 h-4 mr-2" />
-              Buy Complete Bundle
+              Add Bundle to Cart
             </Button>
           </div>
         </div>
@@ -177,7 +219,7 @@ const BundleModal = ({ bundle, isOpen, onClose }: BundleModalProps) => {
                   Total: ${getSelectedTotal().toFixed(2)}
                 </p>
               </div>
-              <Button className="btn-crimson">
+              <Button className="btn-crimson" onClick={handleAddSelectedToCart}>
                 <ShoppingCart className="w-4 h-4 mr-2" />
                 Add Selected to Cart
               </Button>

@@ -1,20 +1,25 @@
 import { useState } from "react";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Link } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
 
 interface NavigationProps {
-  onSearch: (query: string) => void;
+  onSearch?: (query: string) => void;
 }
 
 const Navigation = ({ onSearch }: NavigationProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const { getTotalItems } = useCart();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(searchQuery);
+    if (onSearch) {
+      onSearch(searchQuery);
+    }
   };
 
   const menuItems = [
@@ -35,8 +40,8 @@ const Navigation = ({ onSearch }: NavigationProps) => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
+            <div className="flex items-baseline space-x-4">
               {menuItems.map((item) => (
                 <a
                   key={item.name}
@@ -47,6 +52,16 @@ const Navigation = ({ onSearch }: NavigationProps) => {
                 </a>
               ))}
             </div>
+            <Link to="/cart" className="relative">
+              <Button variant="outline" size="icon">
+                <ShoppingCart className="w-4 h-4" />
+                {getTotalItems() > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {getTotalItems()}
+                  </span>
+                )}
+              </Button>
+            </Link>
           </div>
 
           {/* Search Bar */}
@@ -96,6 +111,14 @@ const Navigation = ({ onSearch }: NavigationProps) => {
                       {item.name}
                     </a>
                   ))}
+                  <Link 
+                    to="/cart" 
+                    className="flex items-center gap-2 px-3 py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <ShoppingCart className="w-4 h-4" />
+                    Cart ({getTotalItems()})
+                  </Link>
                 </div>
               </SheetContent>
             </Sheet>
