@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Search, Menu, X, ShoppingCart } from "lucide-react";
+import { Search, Menu, X, ShoppingCart, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface NavigationProps {
   onSearch?: (query: string) => void;
@@ -14,6 +16,7 @@ const Navigation = ({ onSearch }: NavigationProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const { getTotalItems } = useCart();
+  const { user, signOut } = useAuth();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,16 +55,38 @@ const Navigation = ({ onSearch }: NavigationProps) => {
                 </a>
               ))}
             </div>
-            <Link to="/cart" className="relative">
-              <Button variant="outline" size="icon">
-                <ShoppingCart className="w-4 h-4" />
-                {getTotalItems() > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                    {getTotalItems()}
-                  </span>
-                )}
-              </Button>
-            </Link>
+            <div className="flex items-center space-x-2">
+              <Link to="/cart" className="relative">
+                <Button variant="outline" size="icon">
+                  <ShoppingCart className="w-4 h-4" />
+                  {getTotalItems() > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {getTotalItems()}
+                    </span>
+                  )}
+                </Button>
+              </Link>
+              
+              {user ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="icon">
+                      <User className="w-4 h-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem onClick={signOut}>
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Sign Out
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link to="/auth">
+                  <Button variant="outline">Sign In</Button>
+                </Link>
+              )}
+            </div>
           </div>
 
           {/* Search Bar */}
@@ -119,6 +144,28 @@ const Navigation = ({ onSearch }: NavigationProps) => {
                     <ShoppingCart className="w-4 h-4" />
                     Cart ({getTotalItems()})
                   </Link>
+                  
+                  {user ? (
+                    <button
+                      onClick={() => {
+                        signOut();
+                        setIsOpen(false);
+                      }}
+                      className="flex items-center gap-2 px-3 py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors w-full text-left"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      Sign Out
+                    </button>
+                  ) : (
+                    <Link 
+                      to="/auth" 
+                      className="flex items-center gap-2 px-3 py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <User className="w-4 h-4" />
+                      Sign In
+                    </Link>
+                  )}
                 </div>
               </SheetContent>
             </Sheet>
