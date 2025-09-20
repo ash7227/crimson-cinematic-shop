@@ -144,16 +144,10 @@ const AllCharacters = () => {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-secondary/20">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">More Characters Coming Soon</h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            We're constantly expanding our collection. Request your favorite character 
-            and help us decide what to create next!
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            We're constantly expanding our collection with new character-inspired costume bundles.
+            Stay tuned for exciting additions to our catalog!
           </p>
-          <button
-            onClick={() => navigate('/#request')}
-            className="btn-crimson px-8 py-3 rounded-lg font-semibold transition-all hover:scale-105"
-          >
-            Request a Character
-          </button>
         </div>
       </section>
 
