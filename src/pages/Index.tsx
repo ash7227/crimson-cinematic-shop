@@ -10,6 +10,12 @@ import { Textarea } from "@/components/ui/textarea";
 import ReviewsSection from "@/components/ReviewsSection";
 import bloodSpatterOutfit from "@/assets/blood-spatter-outfit.png";
 import chemistryTeacherOutfit from "@/assets/chemistry-teacher-outfit.png";
+import chemistryTeacherComplete from "@/assets/chemistry-teacher-complete.jpg";
+import chemistryTeacherJacket from "@/assets/chemistry-teacher-jacket.png";
+import chemistryTeacherPants from "@/assets/chemistry-teacher-pants.png";
+import chemistryTeacherShirt from "@/assets/chemistry-teacher-shirt.png";
+import chemistryTeacherHat from "@/assets/chemistry-teacher-hat.png";
+import chemistryTeacherGlasses from "@/assets/chemistry-teacher-glasses.png";
 
 // Mock data
 const featuredBundles = [
@@ -31,16 +37,16 @@ const featuredBundles = [
   {
     id: "2",
     title: "Chemistry Teacher (Alter Ego)",
-    description: "Transform into everyone's favorite science educator",
-    price: 79.99,
-    originalPrice: 109.99,
-    heroImage: chemistryTeacherOutfit,
+    description: "Transform into the iconic educator with this complete professional ensemble and chemistry accessories",
+    price: 109.99,
+    originalPrice: 149.99,
+    heroImage: chemistryTeacherComplete,
     items: [
-      { name: "Yellow Shirt", type: "Clothing", image: "/api/placeholder/100/100", price: 19.99 },
-      { name: "Khaki Pants", type: "Clothing", image: "/api/placeholder/100/100", price: 29.99 },
-      { name: "Pork Pie Hat", type: "Accessory", image: "/api/placeholder/100/100", price: 16.99 },
-      { name: "Gas Mask", type: "Accessory", image: "/api/placeholder/100/100", price: 34.99 },
-      { name: "Chemistry Set", type: "Props", image: "/api/placeholder/100/100", price: 24.99 },
+      { name: "Dark Suit Jacket", type: "Clothing", image: chemistryTeacherJacket, price: 45.99 },
+      { name: "Dress Pants", type: "Clothing", image: chemistryTeacherPants, price: 32.99 },
+      { name: "Green Striped Shirt", type: "Clothing", image: chemistryTeacherShirt, price: 22.99 },
+      { name: "Fedora Hat", type: "Accessory", image: chemistryTeacherHat, price: 28.99 },
+      { name: "Glasses", type: "Accessory", image: chemistryTeacherGlasses, price: 18.99 },
     ]
   }
 ];
