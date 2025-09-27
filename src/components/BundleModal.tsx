@@ -33,6 +33,7 @@ interface BundleModalProps {
 const BundleModal = ({ bundle, isOpen, onClose }: BundleModalProps) => {
   const [selectedItems, setSelectedItems] = useState<Set<number>>(new Set());
   const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
+  const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
   const { addToCart } = useCart();
   const { toast } = useToast();
 
@@ -120,7 +121,8 @@ const BundleModal = ({ bundle, isOpen, onClose }: BundleModalProps) => {
           <img
             src={bundle.heroImage}
             alt={bundle.title}
-            className="w-full h-48 object-cover rounded-lg"
+            className="w-full h-48 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+            onClick={() => setFullScreenImage(bundle.heroImage)}
           />
           <div className="absolute top-4 right-4">
             <Badge variant="destructive" className="bg-crimson text-white">
@@ -162,7 +164,8 @@ const BundleModal = ({ bundle, isOpen, onClose }: BundleModalProps) => {
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-16 h-16 object-cover rounded-md"
+                    className="w-16 h-16 object-cover rounded-md cursor-pointer hover:opacity-90 transition-opacity"
+                    onClick={() => setFullScreenImage(item.image)}
                   />
                   <div className="flex-1">
                     <h4 className="font-semibold">{item.name}</h4>
@@ -227,6 +230,30 @@ const BundleModal = ({ bundle, isOpen, onClose }: BundleModalProps) => {
           </div>
         )}
       </DialogContent>
+
+      {/* Full Screen Image Viewer */}
+      <Dialog open={!!fullScreenImage} onOpenChange={() => setFullScreenImage(null)}>
+        <DialogContent className="max-w-screen max-h-screen w-screen h-screen p-0 bg-black/95">
+          <div className="relative w-full h-full flex items-center justify-center">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-4 right-4 z-50 text-white hover:bg-white/20"
+              onClick={() => setFullScreenImage(null)}
+            >
+              <X className="h-6 w-6" />
+            </Button>
+            {fullScreenImage && (
+              <img
+                src={fullScreenImage}
+                alt="Full screen view"
+                className="max-w-full max-h-full object-contain"
+                onClick={() => setFullScreenImage(null)}
+              />
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </Dialog>
   );
 };
