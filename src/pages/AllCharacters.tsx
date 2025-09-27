@@ -5,6 +5,12 @@ import BundleCard from "@/components/BundleCard";
 import BundleModal from "@/components/BundleModal";
 import bloodSpatterTactical from "@/assets/blood-spatter-tactical.jpg";
 import chemistryTeacherAlter from "@/assets/chemistry-teacher-alter.jpg";
+import chemistryTeacherComplete from "@/assets/chemistry-teacher-complete.jpg";
+import chemistryTeacherJacket from "@/assets/chemistry-teacher-jacket.png";
+import chemistryTeacherPants from "@/assets/chemistry-teacher-pants.png";
+import chemistryTeacherShirt from "@/assets/chemistry-teacher-shirt.png";
+import chemistryTeacherHat from "@/assets/chemistry-teacher-hat.png";
+import chemistryTeacherGlasses from "@/assets/chemistry-teacher-glasses.png";
 
 // All available character bundles
 const allCharacterBundles = [
@@ -29,13 +35,13 @@ const allCharacterBundles = [
     description: "Transform into the iconic educator with this complete professional ensemble and chemistry accessories",
     price: 109.99,
     originalPrice: 149.99,
-    heroImage: chemistryTeacherAlter,
+    heroImage: chemistryTeacherComplete,
     items: [
-      { name: "Dark Suit Jacket", type: "Clothing", image: "/api/placeholder/100/100", price: 45.99 },
-      { name: "Dress Pants", type: "Clothing", image: "/api/placeholder/100/100", price: 32.99 },
-      { name: "Green Striped Shirt", type: "Clothing", image: "/api/placeholder/100/100", price: 22.99 },
-      { name: "Fedora Hat", type: "Accessory", image: "/api/placeholder/100/100", price: 28.99 },
-      { name: "Glasses", type: "Accessory", image: "/api/placeholder/100/100", price: 18.99 },
+      { name: "Dark Suit Jacket", type: "Clothing", image: chemistryTeacherJacket, price: 45.99 },
+      { name: "Dress Pants", type: "Clothing", image: chemistryTeacherPants, price: 32.99 },
+      { name: "Green Striped Shirt", type: "Clothing", image: chemistryTeacherShirt, price: 22.99 },
+      { name: "Fedora Hat", type: "Accessory", image: chemistryTeacherHat, price: 28.99 },
+      { name: "Glasses", type: "Accessory", image: chemistryTeacherGlasses, price: 18.99 },
       { name: "Leather Belt", type: "Accessory", image: "/api/placeholder/100/100", price: 16.99 },
       { name: "Chemistry Equipment", type: "Props", image: "/api/placeholder/100/100", price: 34.99 },
     ]
