@@ -233,12 +233,12 @@ const BundleModal = ({ bundle, isOpen, onClose }: BundleModalProps) => {
 
       {/* Full Screen Image Viewer */}
       <Dialog open={!!fullScreenImage} onOpenChange={() => setFullScreenImage(null)}>
-        <DialogContent className="max-w-screen max-h-screen w-screen h-screen p-0 bg-black/95">
-          <div className="relative w-full h-full flex items-center justify-center">
+        <DialogContent className="max-w-[95vw] max-h-[95vh] w-auto h-auto p-4 bg-black/95 overflow-auto">
+          <div className="relative w-full h-full flex items-center justify-center min-h-[50vh]">
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-4 right-4 z-50 text-white hover:bg-white/20"
+              className="absolute top-2 right-2 z-50 text-white hover:bg-white/20 transition-colors"
               onClick={() => setFullScreenImage(null)}
             >
               <X className="h-6 w-6" />
@@ -247,7 +247,9 @@ const BundleModal = ({ bundle, isOpen, onClose }: BundleModalProps) => {
               <img
                 src={fullScreenImage}
                 alt="Full screen view"
-                className="max-w-full max-h-full object-contain"
+                className="max-w-full max-h-[85vh] object-contain cursor-pointer 
+                         transition-all duration-300 ease-out hover:scale-110 
+                         shadow-2xl rounded-lg"
                 onClick={() => setFullScreenImage(null)}
               />
             )}
