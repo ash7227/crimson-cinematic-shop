@@ -42,8 +42,6 @@ const allCharacterBundles = [
       { name: "Green Striped Shirt", type: "Clothing", image: chemistryTeacherShirt, price: 22.99 },
       { name: "Fedora Hat", type: "Accessory", image: chemistryTeacherHat, price: 28.99 },
       { name: "Glasses", type: "Accessory", image: chemistryTeacherGlasses, price: 18.99 },
-      { name: "Leather Belt", type: "Accessory", image: "/api/placeholder/100/100", price: 16.99 },
-      { name: "Chemistry Equipment", type: "Props", image: "/api/placeholder/100/100", price: 34.99 },
     ]
   }
 ];
