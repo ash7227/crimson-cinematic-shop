@@ -89,7 +89,6 @@ const Checkout = () => {
                     id="email"
                     name="email"
                     type="email"
-                    required
                     value={formData.email}
                     onChange={handleInputChange}
                   />
@@ -101,7 +100,6 @@ const Checkout = () => {
                     <Input
                       id="firstName"
                       name="firstName"
-                      required
                       value={formData.firstName}
                       onChange={handleInputChange}
                     />
@@ -111,7 +109,6 @@ const Checkout = () => {
                     <Input
                       id="lastName"
                       name="lastName"
-                      required
                       value={formData.lastName}
                       onChange={handleInputChange}
                     />
@@ -123,7 +120,6 @@ const Checkout = () => {
                   <Input
                     id="address"
                     name="address"
-                    required
                     value={formData.address}
                     onChange={handleInputChange}
                   />
@@ -135,7 +131,6 @@ const Checkout = () => {
                     <Input
                       id="city"
                       name="city"
-                      required
                       value={formData.city}
                       onChange={handleInputChange}
                     />
@@ -145,7 +140,6 @@ const Checkout = () => {
                     <Input
                       id="state"
                       name="state"
-                      required
                       value={formData.state}
                       onChange={handleInputChange}
                     />
@@ -158,7 +152,6 @@ const Checkout = () => {
                     <Input
                       id="zipCode"
                       name="zipCode"
-                      required
                       value={formData.zipCode}
                       onChange={handleInputChange}
                     />
@@ -168,7 +161,6 @@ const Checkout = () => {
                     <Input
                       id="country"
                       name="country"
-                      required
                       value={formData.country}
                       onChange={handleInputChange}
                     />
