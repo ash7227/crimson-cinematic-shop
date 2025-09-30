@@ -21,17 +21,24 @@ serve(async (req) => {
     }
 
     // Create line items from cart items
-    const lineItems = items.map((item: any) => ({
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: item.name,
-          images: [item.image],
+    const lineItems = items.map((item: any) => {
+      // Convert relative image paths to full URLs
+      const imageUrl = item.image.startsWith('http') 
+        ? item.image 
+        : `${req.headers.get('origin')}${item.image}`;
+      
+      return {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: item.name,
+            images: [imageUrl],
+          },
+          unit_amount: Math.round(item.price * 100), // Convert to cents
         },
-        unit_amount: Math.round(item.price * 100), // Convert to cents
-      },
-      quantity: item.quantity,
-    }));
+        quantity: item.quantity,
+      };
+    });
 
     // Create Stripe checkout session
     const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
