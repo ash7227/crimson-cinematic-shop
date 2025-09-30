@@ -36,16 +36,32 @@ const Checkout = () => {
     e.preventDefault();
     setIsProcessing(true);
 
-    // Simulate order processing
-    setTimeout(() => {
-      toast({
-        title: "Order Placed Successfully!",
-        description: "You will receive a confirmation email shortly.",
+    try {
+      const res = await fetch("https://xyvdmhvpwfnyypmxivzg.supabase.co/functions/v1/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: items,
+          customerData: formData,
+        }),
       });
-      clearCart();
-      navigate('/');
+
+      const data = await res.json();
+
+      if (data.url) {
+        window.location.href = data.url; // Redirect to Stripe checkout
+      } else {
+        throw new Error(data.error || 'Failed to create checkout session');
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      toast({
+        title: "Checkout Error",
+        description: error instanceof Error ? error.message : "Failed to process checkout. Please try again.",
+        variant: "destructive",
+      });
       setIsProcessing(false);
-    }, 2000);
+    }
   };
 
   if (items.length === 0) {
