@@ -46,12 +46,17 @@ const Checkout = () => {
         }),
       });
 
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || 'Failed to create checkout session');
+      }
+
       const data = await res.json();
 
       if (data.url) {
         window.location.href = data.url; // Redirect to Stripe checkout
       } else {
-        throw new Error(data.error || 'Failed to create checkout session');
+        throw new Error('No checkout URL received');
       }
     } catch (error) {
       console.error('Checkout error:', error);
@@ -91,6 +96,7 @@ const Checkout = () => {
                     type="email"
                     value={formData.email}
                     onChange={handleInputChange}
+                    required
                   />
                 </div>
                 
@@ -102,6 +108,7 @@ const Checkout = () => {
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
                   <div>
@@ -111,6 +118,7 @@ const Checkout = () => {
                       name="lastName"
                       value={formData.lastName}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
                 </div>
@@ -122,6 +130,7 @@ const Checkout = () => {
                     name="address"
                     value={formData.address}
                     onChange={handleInputChange}
+                    required
                   />
                 </div>
 
@@ -133,6 +142,7 @@ const Checkout = () => {
                       name="city"
                       value={formData.city}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
                   <div>
@@ -142,6 +152,7 @@ const Checkout = () => {
                       name="state"
                       value={formData.state}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
                 </div>
@@ -154,6 +165,7 @@ const Checkout = () => {
                       name="zipCode"
                       value={formData.zipCode}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
                   <div>
@@ -163,6 +175,7 @@ const Checkout = () => {
                       name="country"
                       value={formData.country}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
                 </div>
