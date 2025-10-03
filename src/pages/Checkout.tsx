@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Checkout = () => {
   const { items, getTotalPrice, clearCart } = useCart();
@@ -37,32 +38,54 @@ const Checkout = () => {
     setIsProcessing(true);
 
     try {
-      const res = await fetch("https://xyvdmhvpwfnyypmxivzg.supabase.co/functions/v1/create-checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items: items,
-          customerData: formData,
-        }),
-      });
+      const totalAmount = getTotalPrice();
 
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || 'Failed to create checkout session');
-      }
+      // Save order to database
+      const { data: order, error: orderError } = await supabase
+        .from('orders')
+        .insert({
+          customer_email: formData.email,
+          customer_name: `${formData.firstName} ${formData.lastName}`,
+          total_amount: totalAmount,
+          status: 'pending',
+          stripe_session_id: '',
+          shipping_address: {
+            address: formData.address,
+            city: formData.city,
+            state: formData.state,
+            zipCode: formData.zipCode,
+            country: formData.country,
+          },
+        })
+        .select()
+        .single();
 
-      const data = await res.json();
+      if (orderError) throw orderError;
 
-      if (data.url) {
-        window.location.href = data.url; // Redirect to Stripe checkout
-      } else {
-        throw new Error('No checkout URL received');
-      }
+      // Save order items
+      const orderItems = items.map(item => ({
+        order_id: order.id,
+        product_name: item.name,
+        product_image: item.image,
+        quantity: item.quantity,
+        unit_price: item.price,
+        total_price: item.price * item.quantity,
+      }));
+
+      const { error: itemsError } = await supabase
+        .from('order_items')
+        .insert(orderItems);
+
+      if (itemsError) throw itemsError;
+
+      // Clear cart and redirect
+      clearCart();
+      navigate(`/success?orderId=${order.id}`);
     } catch (error) {
       console.error('Checkout error:', error);
       toast({
-        title: "Checkout Error",
-        description: error instanceof Error ? error.message : "Failed to process checkout. Please try again.",
+        title: "Order Failed",
+        description: error instanceof Error ? error.message : "Failed to place order. Please try again.",
         variant: "destructive",
       });
       setIsProcessing(false);
